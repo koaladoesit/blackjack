@@ -43,26 +43,35 @@ def shuffled_shoe(deck=get_deck()):
 
 # calculate the score of the current hand
 # TO DO: implement player decision:
-def score(hand):
+def get_score(hand):
     score = 0
     has_ace = False
     has_face = False
     blackjack =  False
+    last_game = False # checking for BLANK.
+    '''I know this function is doing more than it should,
+    but I don't want to have to iterate through the hand multiple times'''
     for card in hand:
         if type(card[0])== int:
             score+=card[0]
-        elif card in ['JACK', 'QUEEN', 'KING']:
+        elif card[0] in ['JACK', 'QUEEN', 'KING']:
             score+=10
             has_face = True
-        else: has_ace = True
-    if has_ace and has_face:
-        has_blackjack = True
+        elif card[0] == "ACE":
+            has_ace = True
+        else: #Found the Blank!
+            last_game = True
+    if len(hand) == 2:
+        if has_ace and has_face:
+            blackjack = True
     if has_ace and not has_face:
         if score <= 10:
             score += 11
         else:
             score+=1
-    return (score, blackjack)
+    return (score, blackjack, has_ace, last_game)
+
+
 
 def check_if_busted(score):
     busted = False
