@@ -44,7 +44,14 @@ number_of_players = 0
 # The session begins by asking how many players are at the table.
 while number_of_players not in range(1,4):
     print("There is a maximum of 3 players in a game")
-    number_of_players = int(input("How many players are in today? "))
+    user_choice = ""
+    while not user_choice.isdigit():
+        user_choice = input("How many players are in today? Please select a number between 1 and 3: ")
+        if not user_choice.isdigit():
+            print("You did not select a number. ")
+    number_of_players = int(user_choice)
+    if number_of_players not in range(1,4):
+        print("You can only have a number between 1 and 3, inclusive. ")
 if number_of_players == 3:
     player1 = Player(1)
     player2 = Player(2)
