@@ -20,8 +20,6 @@ def decide(player):
         if score < 17 or (score == 17 and get_score(player.hand)[2]==True):
             player.deal()
             print("Dealer hits")
-            if player.has_blank:
-                player.deal() # deal again if blank
             score = get_score(player.hand)[0]
             if score>21:
                 print("Game Over, all hands win against Dealer! ")
@@ -42,20 +40,23 @@ def decide(player):
         elif player.tie:
             print("This player has tied!")
         else:  #doing just the "hit" and"stay" implementation, for starters:
-            decision = input(" Hit or stay? ")
-            if decision.lower()== "hit":
-                player.deal()
-                if player.has_blank:
-                    player.deal() # deal again if blank
-                score = get_score(player.hand)[0]
-                if score > 21:
-                    print("This player is busted! ")
-                    player.busted = True
-            elif decision.lower()== "stay":
-                print("Player stays!")
-                player.stay = True
-            else:
-                print("Unable to make out your decision, let's assume you are staying! :D")
+            right_input = False
+            while right_input ==False:
+                decision = input(" Hit or stay? ")
+                if decision.lower()== "hit":
+                    right_input = True
+                    player.deal()
+                    score = get_score(player.hand)[0]
+                    if score > 21:
+                        print("This player is busted! ")
+                        player.busted = True
+                elif decision.lower()== "stay":
+                    right_input = True
+                    print("Player stays!")
+                    player.stay = True
+                if right_input == False:
+                    print("Your decision was not understood. Please try again! ")
+
 
 def compare_hands(player, dealer):
     if get_score(dealer.hand)[1]: #checks if dealer has blackjack
