@@ -84,9 +84,7 @@ while blank_drawn == False:
     game_no+=1
     play_game(active_players, dealer)
     for player in active_players:
-#also checking if the player is not busted, cuz the compare tool won't care and a busted hand could win
-        if not player.busted:
-            compare_hands(player, dealer)
+        compare_hands(player, dealer)
         print(" Hand for {}".format(player.name), player.hand)
     print("Dealer's hand: ", dealer.hand) # show dealer's hand
     for i in range(0, number_of_players):

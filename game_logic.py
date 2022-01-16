@@ -67,7 +67,7 @@ def compare_hands(player, dealer):
             player.loss = True
             print("Player {} lost".format(player.name))
     else: # compare hands with the dealer's and decide the outcome of the current game
-        if get_score(dealer.hand)[0] > get_score(player.hand)[0]:
+        if get_score(dealer.hand)[0] > get_score(player.hand)[0] or player.busted:
             player.loss = True
             print("Player {} lost".format(player.name))
         elif get_score(dealer.hand)[0] < get_score(player.hand)[0]:
