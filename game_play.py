@@ -14,7 +14,6 @@ def play_game(active_players, dealer): # function to play one game in a sitting
                             #moves left
     all_hands_busted = True
     game_restart = False
-    has_blank = False
     while not game_restart:
         for player in active_players:
             if dealer.busted:
@@ -23,24 +22,24 @@ def play_game(active_players, dealer): # function to play one game in a sitting
             else:
                 print("{}, you have this hand: {} and the dealer has one {} of {}".format(player.name, player.hand, dealer.hand[0][0], dealer.hand[0][1]))
                 print("{} decide:".format(player.name))
-                has_blank = decide(player)
+                decide(player)
             if not player.busted: all_hands_busted ==False
             if player.busted == False or player.stay == False:
                 all_hands_done == False
             else:
                 break
         if not all_hands_busted: #checking whether all players busted, which would make dealer's decision useless
-            has_blank = decide(dealer)
+            decide(dealer)
         if dealer.busted or all_hands_done:
             game_restart = True
-    return has_blank
+
 
 
 
 # This was a function that instantiated 3 players and only used the
 # number specified. However, I don't like wasting memory,
 # so let's write some ugly code!
-has_blank = False # The game will continue until someone draws the blank card
+blank_drawn = False # The game will continue until someone draws the blank card
 number_of_players = 0
 # The session begins by asking how many players are at the table.
 while number_of_players not in range(1,4):
@@ -64,10 +63,19 @@ elif number_of_players == 1:
 
 #dealer is a player who doesn't use all his attributes nor shows all his cards during gameplay:
 dealer = Player(4)
-
+game_no = 1
 #let's play the game:
-while has_blank == False:
-    has_blank = play_game(active_players, dealer)
+while blank_drawn == False:
+    for player in active_players:
+        if player.has_blank:
+            blank_drawn = True
+    if dealer.has_blank:
+        blank_drawn = True
+    if blank_drawn == True:
+        print("Blank was drawn, this is the last game! ")
+    print ("Game number :", game_no)
+    game_no+=1
+    play_game(active_players, dealer)
     for player in active_players:
 #also checking if the player is not busted, cuz the compare tool won't care and a busted hand could win
         if not player.busted:
@@ -78,6 +86,5 @@ while has_blank == False:
         print (i)
         reset_game(active_players[i], i)
     reset_game(dealer, 4)
-
 
 

@@ -12,6 +12,7 @@ class Player:
     stay = False
     wins = 0
     losses = 0
+    has_blank = False
 
 
 #get the player's name (number will iterate
@@ -27,6 +28,9 @@ class Player:
 # first hand is of two cards for each player (including the dealer) -
 # needs help with the mutable element as argument  gotcha
         def deal_first_hand():
+            if shoe[-1][0] == "BLANK" or shoe[-2][0]=="BLANK":
+                self.has_blank = True
+                shoe.pop() #remove blank card so it doesn't get played
             self.hand.append(shoe.pop())
             self.hand.append(shoe.pop())
         deal_first_hand()
@@ -34,7 +38,8 @@ class Player:
 #to be used when player asks to hit:
     def deal(self):
         if shoe[-1][0] == "BLANK":
-            print("BLANK was drawn, this is the last game")
+            self.has_blank = True
+            shoe.pop()# remove blank card so it doesn't get played
         self.hand.append(shoe.pop())
 
 #let's see if we can factor in some gambling!

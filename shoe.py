@@ -29,8 +29,9 @@ def shuffled_shoe(deck=get_deck()):
         shoe += deck
     random.shuffle(shoe)
     middle = len(shoe)/2
-    red_card_position = random.randint(0, middle)
-    shoe.insert(red_card_position, [0,'BLANK'])
+    red_card_position = random.randint(0, len(shoe))
+    print(red_card_position)
+    shoe.insert(red_card_position, ['BLANK', 0])
     return shoe
 
 '''
@@ -48,7 +49,6 @@ def get_score(hand):
     has_ace = False
     has_face = False
     blackjack =  False
-    last_game = False # checking for BLANK.
     '''I know this function is doing more than it should,
     but I don't want to have to iterate through the hand multiple times'''
     for card in hand:
@@ -59,8 +59,6 @@ def get_score(hand):
             has_face = True
         elif card[0] == "ACE":
             has_ace = True
-        else: #Found the Blank!
-            last_game = True
     if len(hand) == 2:
         if has_ace and has_face:
             blackjack = True
@@ -69,7 +67,7 @@ def get_score(hand):
             score += 11
         else:
             score+=1
-    return (score, blackjack, has_ace, last_game)
+    return (score, blackjack, has_ace)
 
 
 

@@ -13,15 +13,14 @@ After the first hand is dealt including to the dealer, players have 4 choices:
 
 '''
 def decide(player):
+     #check if dealer and if so, use the 17 strategy to take a decision. Otherwise let user decide
     if player.name == "Dealer":
-        has_blank = get_score(player.hand)[3]
         score = get_score(player.hand)[0]
            #if dealer, check if has ace and 17 (soft 17) or less than 17 score
         if score < 17 or (score == 17 and get_score(player.hand)[2]==True):
             player.deal()
             print("Dealer hits")
-            if player.hand[-1][0] == "BLANK":
-                has_blank = True # this seems a bit redundant since we'll check anyway while scoring...
+            if player.has_blank:
                 player.deal() # deal again if blank
             score = get_score(player.hand)[0]
             if score>21:
@@ -35,11 +34,8 @@ def decide(player):
             print("Game Over, all hands win against Dealer! ")
             player.busted = True
 
-        #to do , function to make all other hands win
-    #check if dealer and if so, use the 17 strategy to take a decision. Otherwise let user decide
     else:
         score = get_score(player.hand)[0]
-        has_blank = get_score(player.hand)[3] # checks if we drew the blank
         if check_if_busted(score) :
             print("This player is busted! ")
             player.busted = True
@@ -49,9 +45,7 @@ def decide(player):
             decision = input(" Hit or stay? ")
             if decision.lower()== "hit":
                 player.deal()
-                if player.hand[-1][0] == "BLANK":
-                    has_blank = True # this seems a bit redundant since we'll check anyway while scoring...
-                    print("BLANK was drawn, this is the last game")
+                if player.has_blank:
                     player.deal() # deal again if blank
                 score = get_score(player.hand)[0]
                 if score > 21:
@@ -61,9 +55,7 @@ def decide(player):
                 print("Player stays!")
                 player.stay = True
             else:
-                print("Unable to prevent you from being a smart...jack, forfeating turn! :D")
-
-    return  has_blank # returns True if a blank card was drawn
+                print("Unable to make out your decision, let's assume you are staying! :D")
 
 def compare_hands(player, dealer):
     if get_score(dealer.hand)[1]: #checks if dealer has blackjack
@@ -93,7 +85,6 @@ def reset_game(player, number):  # reset the player's attributes to default valu
     player.lost = False
     player.tie= False
     player.busted = False
-
 
 
 
