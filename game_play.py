@@ -1,5 +1,5 @@
 from players import Player
-from game_logic import decide, compare_hands
+from game_logic import decide, compare_hands, reset_game
 from shoe import get_score
 
 '''
@@ -12,6 +12,7 @@ from shoe import get_score
 def play_game(active_players, dealer): # function to play one game in a sitting
     all_hands_done = True # set to True to hunt down the 'black swan' of players still having
                             #moves left
+    all_hands_busted = True
     game_restart = False
     has_blank = False
     while not game_restart:
@@ -23,11 +24,13 @@ def play_game(active_players, dealer): # function to play one game in a sitting
                 print("{}, you have this hand: {} and the dealer has one {} of {}".format(player.name, player.hand, dealer.hand[0][0], dealer.hand[0][1]))
                 print("{} decide:".format(player.name))
                 has_blank = decide(player)
+            if not player.busted: all_hands_busted ==False
             if player.busted == False or player.stay == False:
                 all_hands_done == False
-            elif player.busted:
+            else:
                 break
-        has_blank = decide(dealer)
+        if not all_hands_busted: #checking whether all players busted, which would make dealer's decision useless
+            has_blank = decide(dealer)
         if dealer.busted or all_hands_done:
             game_restart = True
     return has_blank
@@ -71,6 +74,10 @@ while has_blank == False:
             compare_hands(player, dealer)
         print(" Hand for {}".format(player.name), player.hand)
     print("Dealer's hand: ", dealer.hand) # show dealer's hand
+    for i in range(0, number_of_players):
+        print (i)
+        reset_game(active_players[i], i)
+    reset_game(dealer, 4)
 
 
 
