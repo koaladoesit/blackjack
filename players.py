@@ -10,15 +10,17 @@ class Player:
     lost = False
     win = False
     stay = False
+    wins = 0
+    losses = 0
 
 
 #get the player's name (number will iterate
 #to fill in as many of the three places as requested by user)
     def __init__(self, number):
-        if number != 4:
+        if number != 4 and self.name == "":
             self.name = input("Player {}, please enter your name: ".format(number)) # in game_play we use a list iteration, so it starts at zero
             self.bet = []
-        else:
+        elif number == 4:
             self.name = "Dealer"
         self.hand = []
 
@@ -31,6 +33,8 @@ class Player:
 #player needs to see the cards
 #to be used when player asks to hit:
     def deal(self):
+        if shoe[-1][0] == "BLANK":
+            print("BLANK was drawn, this is the last game")
         self.hand.append(shoe.pop())
 
 #let's see if we can factor in some gambling!
