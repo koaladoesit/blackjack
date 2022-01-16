@@ -19,8 +19,9 @@ def get_deck():
 - A shoe is a shuffled pack of 6 decks
 - A blank card is a red plastic card inserted in a shoe at a random position so that when the blank
 is drawn, the current game becomes the last
-- I prefer to insert the blank at a random position < middle, so that, drawing from the end of the
-pack, I can have longer games going.
+
+Note for testing: the game is played from the end of the shoe, not the beginning
+(a higher position of the blank means fewer games)
 '''
 #create shoe:
 def shuffled_shoe(deck=get_deck()):
@@ -30,7 +31,7 @@ def shuffled_shoe(deck=get_deck()):
     random.shuffle(shoe)
     middle = len(shoe)/2
     red_card_position = random.randint(0, len(shoe))
-    print(red_card_position)
+    print(red_card_position) # this is to save the tester from blindly going into loooong games
     shoe.insert(red_card_position, ['BLANK', 0])
     return shoe
 

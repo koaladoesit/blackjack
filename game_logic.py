@@ -53,7 +53,8 @@ def decide(player):
                 elif decision.lower()== "stay":
                     right_input = True
                     print("Player stays!")
-                    player.stay = True
+                    player.stay = True # we will count this in game_play
+                                       #to see when all players have stayed or busted
                 if right_input == False:
                     print("Your decision was not understood. Please try again! ")
 

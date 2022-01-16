@@ -37,9 +37,9 @@ def play_game(active_players, dealer): # function to play one game in a sitting
 
 
 # This was a function that instantiated 3 players and only used the
-# number specified. However, I don't like wasting memory,
+# number specified by user input. However, I don't like wasting memory,
 # so let's write some ugly code!
-blank_drawn = False # The game will continue until someone draws the blank card
+
 number_of_players = 0
 # The session begins by asking how many players are at the table.
 while number_of_players not in range(1,4):
@@ -65,13 +65,11 @@ elif number_of_players == 1:
     player1 = Player(1)
     active_players = [player1]
 
-#for i in range(0, number_of_players):
-#    active_players[i].place_bet()
-
 #dealer is a player who doesn't use all his attributes nor shows all his cards during gameplay:
 dealer = Player(4)
 game_no = 1
 #let's play the game:
+blank_drawn = False # The game will continue until someone draws the blank card
 while blank_drawn == False:
     for player in active_players:
         if player.has_blank:
