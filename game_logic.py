@@ -51,6 +51,7 @@ def decide(player):
                 player.deal()
                 if player.hand[-1][0] == "BLANK":
                     has_blank = True # this seems a bit redundant since we'll check anyway while scoring...
+                    print("BLANK was drawn, this is the last game")
                     player.deal() # deal again if blank
                 score = get_score(player.hand)[0]
                 if score > 21:
@@ -83,8 +84,15 @@ def compare_hands(player, dealer):
             player.tie = True
             print("Player {} tie".format(player.name))
 
-
-
+def reset_game(player, number):  # reset the player's attributes to default values, to start a new game
+    if player.win: player.wins+=1
+    if player.lost: players.losses+=1
+    player.hand = []
+    player.__init__(number)
+    player.win = False
+    player.lost = False
+    player.tie= False
+    player.busted = False
 
 
 
