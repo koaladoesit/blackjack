@@ -6,7 +6,7 @@
 - Cards marked 2-10 will score the value they show, for example a 2 will score a 2.
 - Cards that have “faces” or “ranks” (Jack, Queen, King)  will score a 10
 - Ace will score 1 or 11, depending on the current hand:
-- If the current hand score <= 10, player decides Ace value (1 or 11). If the current score >10, Ace = 1
+- If the current hand score <= 10, player decides Ace value (1 or 11). If the current score >10, Ace = 1 (decision not yet implemented)
 - A shoe is a shuffled pack of 6 decks
 - A blank card is a red plastic card inserted in a shoe at a random position so that when the blank is drawn, the current game becomes the last
 - Note for testing: the game is played from the end of the shoe, not the beginning (a higher position of the blank means fewer games)
