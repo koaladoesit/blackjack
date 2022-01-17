@@ -10,8 +10,8 @@ class Player:
     name = ""
     busted = False # A player is busted if they go over 21.
                     #Need to record this so we know when all players are done with the current game
-    tie = False #player ties if they have the same score as the dealer
-                #(except for a blackjack on either side), or a blackjack when dealer has one
+    tie = False # player ties if they have the same score as the dealer
+                # (except for a blackjack on either side), or a blackjack when dealer has one
     lost = False
     win = False
     stay = False #Need to record this so we know when all players are done with the current game
