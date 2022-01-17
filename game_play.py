@@ -15,14 +15,15 @@ def play_game(active_players, dealer): # function to play one game in a sitting
     all_hands_busted = True
     game_restart = False
     while not game_restart:
-        for player in active_players:
-            if dealer.busted:
+
+        if dealer.busted:
+            for player in active_players:
                 player.win = True
-                break # if the dealer is busted, we need to restart the game
-            else:
-                print("{}, you have this hand: {} and the dealer has one {} of {}".format(player.name, player.hand, dealer.hand[0][0], dealer.hand[0][1]))
-                print("{} decide:".format(player.name))
-                decide(player)
+            break # if the dealer is busted, we need to restart the game
+        for player in active_players:
+            print("{}, you have this hand: {} and the dealer has one {} of {}".format(player.name, player.hand, dealer.hand[0][0], dealer.hand[0][1]))
+            print("{} decide:".format(player.name))
+            decide(player)
             if not player.busted: all_hands_busted ==False
             if player.busted == False or player.stay == False:
                 all_hands_done == False
@@ -89,5 +90,4 @@ while blank_drawn == False:
         print (i)
         reset_game(active_players[i], i)
     reset_game(dealer, 4)
-
 
