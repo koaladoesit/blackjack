@@ -24,8 +24,7 @@ def decide(player):
             if score>21:
                 print("Game Over, all hands win against Dealer! ")
                 player.busted = True
-        #to do , function to make all other hands win
-        elif score >= 17 and score < 21:
+        elif score in range(17, 22):
             print("Dealer stays.")
             player.stay = True
         else:
@@ -87,7 +86,6 @@ def reset_game(player, number):  # reset the player's attributes to default valu
     player.lost = False
     player.tie= False
     player.busted = False
-
 
 
 
