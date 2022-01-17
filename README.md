@@ -4,7 +4,7 @@
 
 - There are 52 cards in a deck
 - Cards marked 2-10 will score the value they show, for example a 2 will score a 2.
-- Cards that have “faces” or “ranks” (Jack, Queen, King)  will score a 10
+- Cards that have “faces” (Jack, Queen, King)  will score a 10
 - Ace will score 1 or 11, depending on the current hand:
 - If the current hand score <= 10, player decides Ace value (1 or 11). If the current score >10, Ace = 1 (decision not yet implemented)
 - A shoe is a shuffled pack of 6 decks
