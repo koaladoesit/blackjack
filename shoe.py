@@ -3,7 +3,17 @@ import random
 
 # There are 52 cards in a deck, ranks containing 10 numbers and 4 faces,
 # each of them available in 4 different suits:
-ranks = [r for r in range(2, 11)] + ['JACK', 'QUEEN', 'KING', 'ACE']
+ranks = [r for r in range(2, 15)]
+
+faces = ['ACE', 'JACK', 'QUEEN', 'KING']
+
+values = {}
+
+for r in ranks:
+    if r<=10:
+        values.update({r: r})
+    else:
+        values.update({r: faces[r-11]})
 
 suits = ['SPADE', 'HEART', 'DIAMOND', 'CLUB']
 
@@ -12,7 +22,7 @@ def get_deck():
     deck =[]
     for rank in ranks:
         for suit in suits:
-            deck.append([rank, suit])
+            deck.append([values[rank], suit])
     return deck
 
 '''
