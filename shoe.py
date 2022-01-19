@@ -29,7 +29,6 @@ def get_shoe(deck=get_deck()):
     for i in range(6):
         shoe += deck
     random.shuffle(shoe)
-    middle = len(shoe)/2
     red_card_position = random.randint(0, len(shoe))
     print(red_card_position) # this is to save the tester from blindly going into loooong games
     shoe.insert(red_card_position, ['BLANK', 0])
