@@ -1,7 +1,5 @@
 from players import Player
 from game_logic import decide, compare_hands, reset_game
-from shoe import get_score
-
 '''
 - There is a maximum of 3 players in a game, and one dealer
 - Each player is dealt a two - cards hand at the beginning of the game, face-up.
@@ -90,4 +88,3 @@ while blank_drawn == False:
         print (i)
         reset_game(active_players[i], i)
     reset_game(dealer, 4)
-
