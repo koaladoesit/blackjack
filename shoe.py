@@ -24,7 +24,7 @@ Note for testing: the game is played from the end of the shoe, not the beginning
 (a higher position of the blank means fewer games)
 '''
 #create shoe:
-def shuffled_shoe(deck=get_deck()):
+def get_shoe(deck=get_deck()):
     shoe =[]
     for i in range(6):
         shoe += deck
@@ -78,4 +78,4 @@ def check_if_busted(score):
         busted = True
     return busted
 
-shoe = shuffled_shoe()
+shoe = get_shoe()
