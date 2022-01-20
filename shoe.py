@@ -18,7 +18,6 @@ for r in ranks:
 suits = ['♠', '♥', '♦', '♣']
 
 def get_deck():
-#Return a new deck of cards.
     deck =[]
     for rank in ranks:
         for suit in suits:
