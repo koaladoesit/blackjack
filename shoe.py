@@ -15,7 +15,7 @@ for r in ranks:
     else:
         values.update({r: faces[r-11]})
 
-suits = ['SPADE', 'HEART', 'DIAMOND', 'CLUB']
+suits = ['♠', '♥', '♦', '♣']
 
 def get_deck():
 #Return a new deck of cards.
